@@ -5,7 +5,7 @@ languages:
 products:
 - azure
 description: "This sample shows how to use Spring JDBC module with different Azure Database services."
-urlFragment: spring-data-jdbc-on-azure
+urlFragment: nocat
 ---
 
 # Spring Data JDBC on Azure
@@ -126,7 +126,7 @@ Following below steps to run and test the sample application.
 1. Run application.
 
     ```shell
-    java -jar target/spring-data-jdbc-on-azure-0.1.0-SNAPSHOT.jar
+    java -jar target/nocat-0.1.0-SNAPSHOT.jar
     ```
 
 1. Create new users by running below command.

@@ -3,11 +3,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
   <modelVersion>4.0.0</modelVersion>  
   <groupId>com.microsoft.azure.samples</groupId>  
-  <artifactId>spring-data-jdbc-on-azure</artifactId>  
+  <artifactId>nocat</artifactId>
   <version>0.1.0-SNAPSHOT</version>  
   <packaging>jar</packaging>  
-  <name>spring-data-jdbc-on-azure</name>  
-  <description>Spring Data JDBC sample with Azure Database Services</description>  
+  <name>nocat</name>
+  <description>NoCat Database Services</description>
   <parent> 
     <groupId>org.springframework.boot</groupId>  
     <artifactId>spring-boot-starter-parent</artifactId>  
@@ -60,8 +60,8 @@
         <version>1.8.0</version>
         <configuration>
           <schemaVersion>V2</schemaVersion>
-          <resourceGroup>spring-data-jdbc-on-azure-1591015625411-rg</resourceGroup>
-          <appName>spring-data-jdbc-on-azure-1591015625411</appName>
+          <resourceGroup>nocat-on-azure-1591015625411-rg</resourceGroup>
+          <appName>nocat-on-azure-1591015625411</appName>
           <pricingTier>P1v2</pricingTier>
           <region>westeurope</region>
           <runtime>
