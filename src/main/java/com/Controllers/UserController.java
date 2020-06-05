@@ -1,41 +1,32 @@
 package com.Controllers;
 
-import com.model.Pet;
-import com.model.User;
-import com.model.UserRepository;
-import com.quadtree.Neighbour;
+import com.model.NotcatUser;
+import com.model.NotcatUserRepository;
 import com.quadtree.QuadTree;
-import com.quadtree.QuadTreeConstants;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisShardInfo;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping(path="/user")
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private NotcatUserRepository userRepository;
     @Autowired
     private QuadTree tree;
 
     @GetMapping("/all")
-    public @ResponseBody  Iterable<User> getuser() {
+    public @ResponseBody  Iterable<NotcatUser> getuser() {
 
-        Iterable<User> users = userRepository.findAll();
+        Iterable<NotcatUser> users = userRepository.findAll();
         return users;
     }
 
     @GetMapping("/get/{deviceid}")
-    public @ResponseBody User getuser(@PathVariable String deviceid) {
-        User user = userRepository.findByDeviceId(deviceid);
+    public @ResponseBody
+    NotcatUser getuser(@PathVariable String deviceid) {
+        NotcatUser user = userRepository.findByDeviceId(deviceid);
 
         return  user;
     }

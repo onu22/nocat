@@ -1,7 +1,6 @@
 
 package com.model;
 
-import com.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -10,22 +9,20 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-
 @Repository
-public class UserRepository {
+public class NotcatUserRepository {
 
-    private static final String SQL_FIND_ALL = "SELECT * FROM USERS";
-    private static final String SQL_FIND_BY_DEVICEID = "SELECT * FROM USERS WHERE DEVICEID = :deviceId";
-    private static final String SQL_INSERT = "INSERT INTO USERS (NAME, SPECIES) values(:name, :species)";
-    private static final String SQL_UPDATELOCATION = "UPDATE USERS SET LATLONG = :latLong WHERE DEVICEID = :deviceId";
+    private static final String SQL_FIND_ALL = "SELECT * FROM nocatuser";
+    private static final String SQL_FIND_BY_DEVICEID = "SELECT * FROM nocatuser WHERE DEVICEID = :deviceId";
+    private static final String SQL_INSERT = "INSERT INTO nocatuser (deviceId, userName) values(:deviceId, :userName)";
+    private static final String SQL_UPDATELOCATION = "UPDATE nocatuser SET LATLONG = :latLong WHERE DEVICEID = :deviceId";
 
-    private static final BeanPropertyRowMapper<User> ROW_MAPPER = new BeanPropertyRowMapper<>(User.class);
+    private static final BeanPropertyRowMapper<NotcatUser> ROW_MAPPER = new BeanPropertyRowMapper<>(NotcatUser.class);
 
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public int save(User user) {
+    public int save(NotcatUser user) {
         final SqlParameterSource paramSource = new MapSqlParameterSource()
                 .addValue("deviceId", user.getDeviceId())
                 .addValue("latLong", user.getLatLong());
@@ -34,7 +31,7 @@ public class UserRepository {
 
     public void updateDeviceLocation(String deviceId, String location ) {
         try {
-            User user = findByDeviceId(deviceId);
+            NotcatUser user = findByDeviceId(deviceId);
             if (user != null){
                 final SqlParameterSource paramSource = new MapSqlParameterSource()
                         .addValue("deviceId", user.getDeviceId())
@@ -47,7 +44,7 @@ public class UserRepository {
         }
     }
 
-    public User findByDeviceId(String deviceId) {
+    public NotcatUser findByDeviceId(String deviceId) {
         try {
             final SqlParameterSource paramSource = new MapSqlParameterSource("deviceId", deviceId);
             return jdbcTemplate.queryForObject(SQL_FIND_BY_DEVICEID, paramSource, ROW_MAPPER);
@@ -57,7 +54,7 @@ public class UserRepository {
         }
     }
 
-    public Iterable<User> findAll() {
+    public Iterable<NotcatUser> findAll() {
         return jdbcTemplate.query(SQL_FIND_ALL, ROW_MAPPER);
     }
 

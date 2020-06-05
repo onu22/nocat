@@ -1,8 +1,6 @@
 package com.Controllers;
 
-import com.model.PetRepository;
-import com.model.User;
-import com.model.UserRepository;
+import com.model.NotcatUserRepository;
 import com.quadtree.Neighbour;
 import com.quadtree.QuadTree;
 import com.quadtree.QuadTreeConstants;
@@ -18,7 +16,7 @@ public class NeighboursController {
     @Autowired
     private QuadTree tree;
     @Autowired
-    private UserRepository userRepository;
+    private NotcatUserRepository userRepository;
 
     @GetMapping("/{id}")
     public @ResponseBody Iterable<Neighbour> nearbys(@PathVariable String id) {

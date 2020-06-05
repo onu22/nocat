@@ -5,12 +5,11 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.*;
 
-@Table("Users")
-public class User {
+//@Table("nocatuser")
+public class NotcatUser {
 
     @Id
     private Integer id;
-
     private String deviceId;
     private String userName;
     private String latLong;
