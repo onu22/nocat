@@ -30,7 +30,6 @@ public class UserController {
     public @ResponseBody  Iterable<User> getuser() {
 
         Iterable<User> users = userRepository.findAll();
-
         return users;
     }
 
