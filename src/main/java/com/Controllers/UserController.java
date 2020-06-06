@@ -18,7 +18,6 @@ public class UserController {
 
     @GetMapping("/all")
     public @ResponseBody  Iterable<NotcatUser> getuser() {
-
         Iterable<NotcatUser> users = userRepository.findAll();
         return users;
     }

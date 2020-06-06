@@ -24,7 +24,16 @@ public class PetController {
 
     @GetMapping
     public @ResponseBody Iterable<Pet> getAllPets() {
-        return petRepository.findAll();
+
+        try {
+            Iterable<Pet> pets = petRepository.findAll();
+            return  pets;
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return null;
     }
 
     @GetMapping("/{id}")

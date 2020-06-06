@@ -22,6 +22,11 @@ public class NotcatUserRepository {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
+    public Iterable<NotcatUser> findAll() {
+        Iterable<NotcatUser> users = jdbcTemplate.query(SQL_FIND_ALL, ROW_MAPPER);
+        return users;
+    }
+
     public int save(NotcatUser user) {
         final SqlParameterSource paramSource = new MapSqlParameterSource()
                 .addValue("deviceId", user.getDeviceId())
@@ -52,10 +57,6 @@ public class NotcatUserRepository {
         catch (EmptyResultDataAccessException ex) {
             return null;
         }
-    }
-
-    public Iterable<NotcatUser> findAll() {
-        return jdbcTemplate.query(SQL_FIND_ALL, ROW_MAPPER);
     }
 
 }
