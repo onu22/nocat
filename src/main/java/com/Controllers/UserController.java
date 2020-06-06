@@ -1,7 +1,7 @@
 package com.Controllers;
 
-import com.model.NotcatUser;
-import com.model.NotcatUserRepository;
+import com.model.NocatUser;
+import com.model.NocatUserRepository;
 import com.quadtree.QuadTree;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,23 +12,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserController {
 
     @Autowired
-    private NotcatUserRepository userRepository;
+    private NocatUserRepository userRepository;
     @Autowired
     private QuadTree tree;
 
     @GetMapping("/all")
-    public @ResponseBody  Iterable<NotcatUser> getuser() {
-        Iterable<NotcatUser> users = userRepository.findAll();
+    public @ResponseBody  Iterable<NocatUser> getuser() {
+        Iterable<NocatUser> users = userRepository.findAll();
         return users;
     }
 
-    @GetMapping("/get/{deviceid}")
-    public @ResponseBody
-    NotcatUser getuser(@PathVariable String deviceid) {
-        NotcatUser user = userRepository.findByDeviceId(deviceid);
-
-        return  user;
-    }
+//    @GetMapping("/get/{deviceid}")
+//    public @ResponseBody
+//    NotcatUser getuser(@PathVariable String deviceid) {
+//        NotcatUser user = userRepository.findByDeviceId(deviceid);
+//
+//        return  user;
+//    }
 
     @PostMapping("/pos")
     public @ResponseBody String updatePos(@RequestBody Integer id,@PathVariable String latlong) {

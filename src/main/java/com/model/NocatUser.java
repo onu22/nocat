@@ -2,13 +2,22 @@ package com.model;
 
 import org.springframework.data.annotation.*;
 
-//@Table("nocatuser")
-public class NotcatUser {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class NocatUser {
 
     @Id
     private Integer id;
+
+    @Column(name = "deviceId")
     private String deviceId;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "latLong")
     private String latLong;
 
     public Integer getId() {

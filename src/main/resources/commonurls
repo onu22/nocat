@@ -1,13 +1,3 @@
 
 http://localhost:5001/user/
 http://localhost:5001/neigh/get/id=sds
-
-IF NOT EXISTS (SELECT 1 FROM sysobjects WHERE NAME='nocatuser' and XTYPE='U')
-  CREATE TABLE nocatuser (
-    id      INT           IDENTITY  PRIMARY KEY,
-    deviceId    NVARCHAR(255),
-    userName NVARCHAR(255),
-    latLong NVARCHAR(255),
-  );
-
-Insert into nocatuser(deviceId,userName,latLong) values('123','pmanonu 2','43.645250 -79.403168')
