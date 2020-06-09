@@ -1,7 +1,7 @@
 package com.Controllers;
 
-import com.model.NocatUser;
-import com.model.NocatUserRepository;
+import com.service.NocatUserService;
+import com.service.NocatUser;
 import com.quadtree.QuadTree;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,14 +12,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UserController {
 
     @Autowired
-    private NocatUserRepository userRepository;
+    NocatUserService userService;
     @Autowired
     private QuadTree tree;
 
     @GetMapping("/all")
     public @ResponseBody  Iterable<NocatUser> getuser() {
-        Iterable<NocatUser> users = userRepository.findAll();
-        return users;
+
+        try {
+            userService.updateUser(5);
+            Iterable<NocatUser>  users = userService.getUsers();
+            return  users;
+        }
+        catch (Exception ex){
+            return  null;
+        }
     }
 
 //    @GetMapping("/get/{deviceid}")
@@ -31,7 +38,7 @@ public class UserController {
 //    }
 
     @PostMapping("/pos")
-    public @ResponseBody String updatePos(@RequestBody Integer id,@PathVariable String latlong) {
+    public @ResponseBody String updatePos(@RequestBody Integer id, @PathVariable String latlong) {
 
         tree.addNeighbour(111, 43.650715, -79.377161); //22 Adelaide St E, Toronto, ON M5C 3G6, Canada
         tree.addNeighbour(211, 43.645250, -79.403168); //125-135 Bathurst St, Toronto, ON M5V 2R2, Canada
@@ -46,4 +53,9 @@ public class UserController {
 
         return "updated";
     }
+
+    //    public @ResponseBody String deletePet(@PathVariable Integer id) {
+//        petRepository.deleteById(id);
+//        return "Deleted " + id;
+//    }
 }

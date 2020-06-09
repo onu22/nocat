@@ -1,15 +1,14 @@
 
-package com.model;
+package com.service;
 
+import com.service.NocatUser;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
-@Repository
 public interface NocatUserRepository extends CrudRepository<NocatUser, Long> {
 
-    List<NocatUser> findAll();
+    NocatUser findById(long id);
+
 //    private static final String SQL_FIND_ALL = "SELECT * FROM nocatuser";
 //    private static final String SQL_FIND_BY_DEVICEID = "SELECT * FROM nocatuser WHERE DEVICEID = :deviceId";
 //    private static final String SQL_INSERT = "INSERT INTO nocatuser (deviceId, userName) values(:deviceId, :userName)";

@@ -2,7 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
   <modelVersion>4.0.0</modelVersion>  
-  <groupId>com.microsoft.azure.samples</groupId>  
+  <groupId>com.microsoft.azure.samples</groupId>
   <artifactId>nocat</artifactId>
   <version>0.1.0-SNAPSHOT</version>  
   <packaging>jar</packaging>  
@@ -10,8 +10,8 @@
   <description>Nocat location Services</description>
   <parent> 
     <groupId>org.springframework.boot</groupId>  
-    <artifactId>spring-boot-starter-parent</artifactId>  
-    <version>2.1.0.RELEASE</version>  
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.2.RELEASE</version>
     <relativePath/>  
     <!-- lookup parent from repository --> 
   </parent>  
@@ -21,11 +21,7 @@
     <java.version>1.8</java.version>  
     <database.platform/> 
   </properties>  
-  <dependencies> 
-    <dependency> 
-      <groupId>org.springframework.boot</groupId>  
-      <artifactId>spring-boot-starter-data-jdbc</artifactId> 
-    </dependency>  
+  <dependencies>
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-web</artifactId> 
@@ -34,31 +30,38 @@
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-test</artifactId>  
       <scope>test</scope> 
-    </dependency>  
-    <dependency> 
-      <groupId>com.microsoft.sqlserver</groupId>  
-      <artifactId>mssql-jdbc</artifactId>  
-      <version>7.4.1.jre11</version> 
-    </dependency>
-    <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
-      <version>3.2.0</version>
-      <type>jar</type>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
+    <dependency> 
+      <groupId>com.microsoft.sqlserver</groupId>  
+      <artifactId>mssql-jdbc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.2.6.RELEASE</version>
+    </dependency>
 
-  </dependencies>  
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-data-jdbc</artifactId>-->
+<!--    </dependency>-->
+  </dependencies>
+
+
+
+
   <build> 
     <plugins> 
       <plugin> 
         <groupId>org.springframework.boot</groupId>  
         <artifactId>spring-boot-maven-plugin</artifactId> 
       </plugin>  
+
+
       <plugin>
         <groupId>com.microsoft.azure</groupId>
         <artifactId>azure-webapp-maven-plugin</artifactId>
@@ -94,7 +97,9 @@
           </deployment>
         </configuration>
       </plugin>
-    </plugins> 
+
+
+    </plugins>
   </build>  
 
   <profiles>
