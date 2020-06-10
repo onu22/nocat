@@ -16,7 +16,7 @@ public class NocatUserService implements INocatUserService {
     }
 
     @Override
-    public void updateUser( NocatUser updatedUser) {
+    public void updateLocation( NocatUser updatedUser) {
         long id = updatedUser.getId();
         NocatUser user = nocatUserRepository.findById(id);
         user.setLatLong(updatedUser.getLatLong());

@@ -3,7 +3,7 @@ package com.nocat.Controllers;
 import com.nocat.service.NocatUserService;
 import com.nocat.service.NocatUser;
 import com.nocat.quadtree.QuadTree;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +18,19 @@ public class UserController {
     private QuadTree tree;
 
 
-    @RequestMapping(method=RequestMethod.PUT, path = "/{userId}")
-    public @ResponseBody void updateuser(@PathVariable String userId, @RequestBody NocatUser nocatUser) {
+    @RequestMapping(method=RequestMethod.PUT, path = "/updatelocation")
+    public ResponseEntity<NocatUser> updateLocation(@RequestBody NocatUser data) {
         try {
-            userService.updateUser(nocatUser);
 
-            String[] latLong = nocatUser.getLatLong().split(" ");
+            userService.updateLocation(data);
+            String[] latLong = data.getLatLong().split(" ");
             long lat = Long.parseLong(latLong[0]);
             long longi = Long.parseLong(latLong[1]);
-            tree.addNeighbour(nocatUser.getId(),lat, longi);
+            tree.addNeighbour(data.getId(),lat, longi);
+            return new ResponseEntity<NocatUser>(HttpStatus.OK);
         }
         catch (Exception ex){
+            return new ResponseEntity<NocatUser>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
