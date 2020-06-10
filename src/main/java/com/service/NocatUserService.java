@@ -9,17 +9,23 @@ public class NocatUserService implements INocatUserService {
     @Autowired
     private NocatUserRepository nocatUserRepository;
 
-    public Iterable<NocatUser> getUsers() {
-
-        Iterable<NocatUser> users = nocatUserRepository.findAll();
-        return  users;
+    @Override
+    public NocatUser findById(long id) {
+        NocatUser user = nocatUserRepository.findById(id);
+        return  user;
     }
 
     @Override
-    public void updateUser(long id) {
+    public void updateUser( NocatUser updatedUser) {
+        long id = updatedUser.getId();
         NocatUser user = nocatUserRepository.findById(id);
-        user.setLatLong("48 49");
+        user.setLatLong(updatedUser.getLatLong());
         nocatUserRepository.save(user);
     }
 
+    @Override
+    public Iterable<NocatUser> getUsers() {
+        Iterable<NocatUser> users = nocatUserRepository.findAll();
+        return  users;
+    }
 }
