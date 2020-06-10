@@ -1,4 +1,4 @@
-package com.service;
+package com.nocat.service;
 
 import javax.persistence.*;
 

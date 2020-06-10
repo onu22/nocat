@@ -1,4 +1,4 @@
-package com.quadtree;
+package com.nocat.quadtree;
 
 public interface Neighbour {
 

@@ -1,0 +1,25 @@
+#db configs
+spring.datasource.initialization-mode=always
+spring.datasource.platform=@database.platform@
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.jpa.hibernate.naming.implicit-strategy=org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+#swagger
+api.version=1.0
+swagger.enabled=true
+swagger.title=jpa-spec-with-quartz-and-api API
+swagger.description=Sample Swagger implementation for the `jpa-spec-with-quartz-and-api` service, leveraging annotations at the controller-method level.
+swagger.useDefaultResponseMessages=false
+swagger.enableUrlTemplating=false
+swagger.deepLinking=true
+swagger.defaultModelsExpandDepth=1
+swagger.defaultModelExpandDepth=1
+swagger.displayOperationId=false
+swagger.displayRequestDuration=false
+swagger.filter=false
+swagger.maxDisplayedTags=0
+swagger.showExtensions=false;
+

@@ -1,14 +1,14 @@
-package com.Controllers;
-import com.quadtree.Neighbour;
-import com.quadtree.QuadTree;
-import com.quadtree.QuadTreeConstants;
+package com.nocat.Controllers;
+import com.nocat.quadtree.Neighbour;
+import com.nocat.quadtree.QuadTree;
+import com.nocat.quadtree.QuadTreeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Controller
-@RequestMapping(path="/neigh")
+@RequestMapping(path="/api/neigh")
 public class NeighboursController {
 
     @Autowired

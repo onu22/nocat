@@ -19,7 +19,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  
     <java.version>1.8</java.version>  
-    <database.platform/> 
+    <database.platform/>
+
+    <swagger.version>2.9.2</swagger.version>
+<!--    <swagger-annotations.version>1.5.21</swagger-annotations.version>-->
+<!--    <swagger-models.version>1.5.21</swagger-models.version>-->
   </properties>  
   <dependencies>
     <dependency> 
@@ -45,10 +49,28 @@
       <version>5.2.6.RELEASE</version>
     </dependency>
 
+
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>${swagger.version}</version>
+    </dependency>
 <!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-data-jdbc</artifactId>-->
+<!--      <groupId>io.swagger</groupId>-->
+<!--      <artifactId>swagger-annotations</artifactId>-->
+<!--      <version>${swagger-annotations.version}</version>-->
 <!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>io.swagger</groupId>-->
+<!--      <artifactId>swagger-models</artifactId>-->
+<!--      <version>${swagger-models.version}</version>-->
+<!--    </dependency>-->
+
   </dependencies>
 
 

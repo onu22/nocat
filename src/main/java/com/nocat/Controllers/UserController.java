@@ -1,15 +1,15 @@
-package com.Controllers;
+package com.nocat.Controllers;
 
-import com.service.NocatUserService;
-import com.service.NocatUser;
-import com.quadtree.QuadTree;
+import com.nocat.service.NocatUserService;
+import com.nocat.service.NocatUser;
+import com.nocat.quadtree.QuadTree;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
-@RequestMapping(path="/users")
+@RequestMapping(path="/api/users")
 public class UserController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class UserController {
     private QuadTree tree;
 
 
-    @RequestMapping(method=RequestMethod.PUT, path = "/{userId}", consumes = {MediaType.APPLICATION_JSON_VALUE},produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method=RequestMethod.PUT, path = "/{userId}")
     public @ResponseBody void updateuser(@PathVariable String userId, @RequestBody NocatUser nocatUser) {
         try {
             userService.updateUser(nocatUser);
@@ -33,7 +33,7 @@ public class UserController {
 
     }
 
-    @RequestMapping(method=RequestMethod.GET, path = "/{userId}", consumes = {MediaType.APPLICATION_JSON_VALUE},produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method=RequestMethod.GET, path = "/{userId}")
     public @ResponseBody  NocatUser getuser(long userId) {
         try {
             NocatUser  user = userService.findById(userId);
@@ -44,7 +44,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method=RequestMethod.GET, path = "/{all}", consumes = {MediaType.APPLICATION_JSON_VALUE},produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method=RequestMethod.GET)
     public @ResponseBody  Iterable<NocatUser> getusers() {
         try {
             Iterable<NocatUser>  users = userService.getUsers();

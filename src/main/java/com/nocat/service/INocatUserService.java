@@ -1,4 +1,4 @@
-package com.service;
+package com.nocat.service;
 
 public interface INocatUserService {
     public Iterable<NocatUser> getUsers();

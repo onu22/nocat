@@ -1,7 +1,6 @@
-package com.quadtree;
+package com.nocat.quadtree;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;

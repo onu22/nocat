@@ -1,6 +1,4 @@
-package com.quadtree;
-
-import org.springframework.context.annotation.Bean;
+package com.nocat.quadtree;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
