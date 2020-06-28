@@ -1,15 +1,15 @@
 package com.nocat;
 
-import com.nocat.quadtree.Neighbour;
+import com.nocat.quadtree.INocatUser;
 import javax.persistence.*;
 
 @Entity
-public class NocatUser implements Neighbour {
+public class NocatUser implements INocatUser {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "deviceId")
     private String deviceId;

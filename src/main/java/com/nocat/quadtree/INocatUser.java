@@ -1,6 +1,6 @@
 package com.nocat.quadtree;
 
-public interface Neighbour {
+public interface INocatUser {
 
     public long getId();
 

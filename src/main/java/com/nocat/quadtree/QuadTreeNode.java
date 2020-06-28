@@ -61,7 +61,7 @@ public class QuadTreeNode {
      *  List of points of interest A.K.A neighbours inside this node
      *  this list is only filled in the deepest nodes
      */
-    protected List<Neighbour> mNeighbours = new ArrayList<>();
+    protected List<INocatUser> mINocatUsers = new ArrayList<>();
 
     /**
      * Creates a new node
@@ -77,17 +77,17 @@ public class QuadTreeNode {
     /**
      * Adds a neighbour in the quadtree.
      * This method will navigate and create nodes if necessary, until the smallest (deepest) node is reached
-     * @param neighbour
+     * @param INocatUser
      */
-    public void addNeighbour(Neighbour neighbour, double deepestNodeSize) {
+    public void addNeighbour(INocatUser INocatUser, double deepestNodeSize) {
         double halfSize = mBounds.width * .5f;
         if (halfSize < deepestNodeSize) {
-            mNeighbours.add(neighbour);
+            mINocatUsers.add(INocatUser);
             return;
         }
 
-        QuadTreeNode node = locateAndCreateNodeForPoint(neighbour.getLatitude(), neighbour.getLongitude());
-        node.addNeighbour(neighbour, deepestNodeSize);
+        QuadTreeNode node = locateAndCreateNodeForPoint(INocatUser.getLatitude(), INocatUser.getLongitude());
+        node.addNeighbour(INocatUser, deepestNodeSize);
     }
 
     /**
@@ -96,9 +96,9 @@ public class QuadTreeNode {
      * @return if the neighbour existed and was removed
      */
     public boolean removeNeighbour(long id) {
-        for (Neighbour neighbor : mNeighbours) {
+        for (INocatUser neighbor : mINocatUsers) {
             if (id == neighbor.getId()) {
-                mNeighbours.remove(neighbor);
+                mINocatUsers.remove(neighbor);
                 return true;
             }
         }
@@ -128,10 +128,10 @@ public class QuadTreeNode {
 
     /**
      * Recursively search for neighbours inside the given rectangle
-     * @param neighbourSet a set to be filled by this method
+     * @param INocatUserSet a set to be filled by this method
      * @param rangeAsRectangle the area of interest
      */
-    public void findNeighboursWithinRectangle(Set<Neighbour> neighbourSet, Rectangle2D.Double rangeAsRectangle) {
+    public void findNeighboursWithinRectangle(Set<INocatUser> INocatUserSet, Rectangle2D.Double rangeAsRectangle) {
         boolean end;
 
         // In case of containing the whole area of interest
@@ -142,28 +142,28 @@ public class QuadTreeNode {
             // otherwise we should keep going deeper
 
             if (mTopLeftNode != null) {
-                mTopLeftNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mTopLeftNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mBottomLeftNode != null) {
-                mBottomLeftNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mBottomLeftNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mTopRightNode != null) {
-                mTopRightNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mTopRightNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mBottomRightNode != null) {
-                mBottomRightNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mBottomRightNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
 
             if (end)
-                addNeighbors(true, neighbourSet, rangeAsRectangle);
+                addNeighbors(true, INocatUserSet, rangeAsRectangle);
 
             return;
         }
@@ -176,27 +176,27 @@ public class QuadTreeNode {
             // otherwise we should keep going deeper
 
             if (mTopLeftNode != null) {
-                mTopLeftNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mTopLeftNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mBottomLeftNode != null) {
-                mBottomLeftNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mBottomLeftNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mTopRightNode != null) {
-                mTopRightNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mTopRightNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (mBottomRightNode != null) {
-                mBottomRightNode.findNeighboursWithinRectangle(neighbourSet, rangeAsRectangle);
+                mBottomRightNode.findNeighboursWithinRectangle(INocatUserSet, rangeAsRectangle);
                 end = false;
             }
 
             if (end)
-                addNeighbors(false, neighbourSet, rangeAsRectangle);
+                addNeighbors(false, INocatUserSet, rangeAsRectangle);
         }
     }
 
@@ -206,9 +206,9 @@ public class QuadTreeNode {
      * @param neighborSet a set to be filled by this method
      * @param rangeAsRectangle the area of interest
      */
-    private void addNeighbors(boolean contains, Set<Neighbour> neighborSet, Rectangle2D.Double rangeAsRectangle) {
+    private void addNeighbors(boolean contains, Set<INocatUser> neighborSet, Rectangle2D.Double rangeAsRectangle) {
         if (contains) {
-            neighborSet.addAll(mNeighbours);
+            neighborSet.addAll(mINocatUsers);
             return;
         }
 
@@ -221,8 +221,8 @@ public class QuadTreeNode {
      * @param neighborSet a set to be filled by this method
      * @param rangeAsRectangle the area of interest
      */
-    private void findAll(Set<Neighbour> neighborSet, Rectangle2D.Double rangeAsRectangle) {
-        for (Neighbour neighbor : mNeighbours) {
+    private void findAll(Set<INocatUser> neighborSet, Rectangle2D.Double rangeAsRectangle) {
+        for (INocatUser neighbor : mINocatUsers) {
             if (rangeAsRectangle.contains(neighbor.getLongitude(), neighbor.getLatitude()))
                 neighborSet.add(neighbor);
         }

@@ -32,31 +32,31 @@ public class QuadTree {
     }
 
     public synchronized void addNeighbour(long id, double latitude, double longitude) {
-        Neighbour neighbour =
+        INocatUser INocatUser =
                // new NeighbourImpl(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
                 new NocatUser(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
-        mRootNode.addNeighbour(neighbour, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_DEGREE);
+        mRootNode.addNeighbour(INocatUser, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_DEGREE);
     }
 
     public void removeNeighbour(long id) {
         mRootNode.removeNeighbour(id);
     }
 
-    public Set<Neighbour> findNeighbours(double latitude, double longitude, double rangeInKm) {
-        Set<Neighbour> neighbourSet = new HashSet<>();
+    public Set<INocatUser> findNeighbours(double latitude, double longitude, double rangeInKm) {
+        Set<INocatUser> INocatUserSet = new HashSet<>();
         double rangeInDegrees = QuadTreeConstants.kmToDegree(rangeInKm);
 
         Rectangle2D.Double areaOfInterest = getRangeAsRectangle(normalizeLatitude(latitude), normalizeLongitude(longitude), rangeInDegrees);
-        mRootNode.findNeighboursWithinRectangle(neighbourSet, areaOfInterest);
-        return neighbourSet;
+        mRootNode.findNeighboursWithinRectangle(INocatUserSet, areaOfInterest);
+        return INocatUserSet;
     }
 
     public Set<Long> findNeighboursIds(double latitude, double longitude, double rangeInKm) {
-        Set<Neighbour> neighbourSet = findNeighbours(latitude, longitude, rangeInKm);
+        Set<INocatUser> INocatUserSet = findNeighbours(latitude, longitude, rangeInKm);
         Set<Long> neighboursIds = new HashSet<>();
 
-        for(Neighbour neighbour : neighbourSet)
-            neighboursIds.add(neighbour.getId());
+        for(INocatUser INocatUser : INocatUserSet)
+            neighboursIds.add(INocatUser.getId());
 
         return neighboursIds;
     }

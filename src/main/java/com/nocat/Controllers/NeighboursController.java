@@ -1,5 +1,6 @@
 package com.nocat.Controllers;
-import com.nocat.quadtree.Neighbour;
+import com.nocat.NocatUser;
+import com.nocat.quadtree.INocatUser;
 import com.nocat.quadtree.QuadTree;
 import com.nocat.quadtree.QuadTreeConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,16 @@ public class NeighboursController {
     private QuadTree tree;
 
     @GetMapping("/{id}")
-    public @ResponseBody Iterable<Neighbour> nearbys(@PathVariable String id) {
+    public @ResponseBody Iterable<NocatUser> nearbys(@PathVariable long id) {
 
         try  {
             float latitude = (float) 9.077587; //(yz / mScaleDrawToLatitude) - 90;
             float longitude = (float) 7.467276; //(xz / mScaleDrawToLongitude) - 180;
-            Set<Neighbour> mSelectedNeighbours = new HashSet<>();
-            return mSelectedNeighbours = tree.findNeighbours(latitude, longitude, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_KM);
+            Set<INocatUser> mSelectedINocatUsers = new HashSet<>();
+            mSelectedINocatUsers = tree.findNeighbours(latitude, longitude, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_KM);
+
+            //get mapping notcat users from the database
+
         }
         catch(Exception e) {
             String exce = e.toString();

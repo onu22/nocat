@@ -1,12 +1,12 @@
 package com.nocat.quadtree;
 
-public class NeighbourImpl implements Neighbour {
+public class INocatUserImpl implements INocatUser {
 
     private final long mId;
     private final double mLatitude;
     private final double mLongitude;
 
-    public NeighbourImpl(long id, double latitude, double longitude) {
+    public INocatUserImpl(long id, double latitude, double longitude) {
         mId = id;
         mLatitude = latitude;
         mLongitude = longitude;
