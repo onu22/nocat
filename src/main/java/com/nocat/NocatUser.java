@@ -25,21 +25,22 @@ public class NocatUser implements INocatUser {
 
     protected NocatUser() {}
 
-    public NocatUser(long id, double latitude, double longitude) {
+    public NocatUser(long id, double latitude, double longitude, String userName, String deviceId) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.userName = userName;
+        this.deviceId = deviceId;
     }
 
-    @Override
+
     public long getId() {
         return id;
     }
-    @Override
+
     public double getLatitude() {
         return latitude;
     }
-    @Override
     public double getLongitude() {
         return longitude;
     }

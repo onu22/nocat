@@ -3,7 +3,7 @@ package com.nocat.quadtree;
 
 public class QuadTreeConstants {
 
-    public static final double QUADTREE_LAST_NODE_SIZE_IN_KM = 10;
+    public static final double QUADTREE_LAST_NODE_SIZE_IN_KM = 50;
 
     public static final double QUADTREE_LAST_NODE_SIZE_IN_DEGREE = kmToDegree(QUADTREE_LAST_NODE_SIZE_IN_KM);
 

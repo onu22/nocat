@@ -7,15 +7,10 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
 
-//store in Redis?
 @Component
 //@ApplicationScope
 public class QuadTree {
 
-    public String display() {
-        return "onu" + this.getClass().getName() + "@" +
-                Integer.toHexString(System.identityHashCode(this));
-    }
     public static final int TOTAL_X_DEGREES = 360; // -180 to 180 - longitude
     public static final int TOTAL_Y_DEGREES = 180; // -90 to 90   - latitude
     private static final int NORMALIZE_X = 180;
@@ -31,10 +26,10 @@ public class QuadTree {
         mRootNode = rootNode;
     }
 
-    public synchronized void addNeighbour(long id, double latitude, double longitude) {
+    public synchronized void addNeighbour(long id, double latitude, double longitude,String userName, String deviceId) {
         INocatUser INocatUser =
                // new NeighbourImpl(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
-                new NocatUser(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
+                new NocatUser(id, normalizeLatitude(latitude), normalizeLongitude(longitude),userName,deviceId);
         mRootNode.addNeighbour(INocatUser, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_DEGREE);
     }
 
@@ -52,11 +47,11 @@ public class QuadTree {
     }
 
     public Set<Long> findNeighboursIds(double latitude, double longitude, double rangeInKm) {
-        Set<INocatUser> INocatUserSet = findNeighbours(latitude, longitude, rangeInKm);
+        Set<INocatUser> nocatUserSet = findNeighbours(latitude, longitude, rangeInKm);
         Set<Long> neighboursIds = new HashSet<>();
 
-        for(INocatUser INocatUser : INocatUserSet)
-            neighboursIds.add(INocatUser.getId());
+        for(INocatUser nocatUser : nocatUserSet)
+            neighboursIds.add(nocatUser.getId());
 
         return neighboursIds;
     }

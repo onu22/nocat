@@ -17,18 +17,35 @@ public class UserController {
     @Autowired
     private QuadTree tree;
 
-
     @RequestMapping(method=RequestMethod.PUT, path = "/updatelocation")
     public ResponseEntity<NocatUser> updateLocation(@RequestBody NocatUser data) {
         try {
+
             userService.updateLocation(data);
             double latitude = data.getLatitude();
             double longitude = data.getLongitude();
-            tree.addNeighbour(data.getId(),latitude, longitude);
+            tree.addNeighbour(data.getId(),latitude, longitude, data.getUserName(),data.getDeviceId());
             return new ResponseEntity<NocatUser>(HttpStatus.OK);
         }
         catch (Exception ex){
             return new ResponseEntity<NocatUser>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(method=RequestMethod.GET, path = "/updatetree")
+    public @ResponseBody void addUsersToTree() { //temp implementation
+        try {
+            Iterable<NocatUser>  users = userService.getUsers();
+            for(NocatUser nocatUser : users){
+                tree.removeNeighbour(nocatUser.getId());
+            }
+            for(NocatUser nocatUser : users){
+                tree.addNeighbour(nocatUser.getId(),nocatUser.getLatitude(), nocatUser.getLongitude(),
+                        nocatUser.getUserName(),nocatUser.getDeviceId());
+            }
+        }
+        catch (Exception ex){
+
         }
     }
 

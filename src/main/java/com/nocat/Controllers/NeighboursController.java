@@ -15,17 +15,16 @@ public class NeighboursController {
     @Autowired
     private QuadTree tree;
 
-    @GetMapping("/{id}")
-    public @ResponseBody Iterable<NocatUser> nearbys(@PathVariable long id) {
+    @RequestMapping(method=RequestMethod.PUT, path = "/getall")
+    public @ResponseBody Iterable<INocatUser> nearbys(@RequestBody NocatUser data) {
 
         try  {
-            float latitude = (float) 9.077587; //(yz / mScaleDrawToLatitude) - 90;
-            float longitude = (float) 7.467276; //(xz / mScaleDrawToLongitude) - 180;
+            double latitude = data.getLatitude(); //float) 9.077587; //(yz / mScaleDrawToLatitude) - 90;
+            double longitude = data.getLongitude();  //(xz / mScaleDrawToLongitude) - 180;
             Set<INocatUser> mSelectedINocatUsers = new HashSet<>();
             mSelectedINocatUsers = tree.findNeighbours(latitude, longitude, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_KM);
 
-            //get mapping notcat users from the database
-
+            return mSelectedINocatUsers;
         }
         catch(Exception e) {
             String exce = e.toString();
