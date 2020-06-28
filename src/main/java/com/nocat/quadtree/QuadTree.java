@@ -1,5 +1,6 @@
 package com.nocat.quadtree;
 
+import com.nocat.NocatUser;
 import org.springframework.stereotype.Component;
 
 import java.awt.geom.Rectangle2D;
@@ -31,8 +32,9 @@ public class QuadTree {
     }
 
     public synchronized void addNeighbour(long id, double latitude, double longitude) {
-        Neighbour neighbour = new NeighbourImpl(id, normalizeLatitude(latitude),
-                normalizeLongitude(longitude));
+        Neighbour neighbour =
+               // new NeighbourImpl(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
+                new NocatUser(id, normalizeLatitude(latitude), normalizeLongitude(longitude));
         mRootNode.addNeighbour(neighbour, QuadTreeConstants.QUADTREE_LAST_NODE_SIZE_IN_DEGREE);
     }
 

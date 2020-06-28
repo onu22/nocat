@@ -60,20 +60,7 @@
       <artifactId>springfox-swagger-ui</artifactId>
       <version>${swagger.version}</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>io.swagger</groupId>-->
-<!--      <artifactId>swagger-annotations</artifactId>-->
-<!--      <version>${swagger-annotations.version}</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>io.swagger</groupId>-->
-<!--      <artifactId>swagger-models</artifactId>-->
-<!--      <version>${swagger-models.version}</version>-->
-<!--    </dependency>-->
-
   </dependencies>
-
-
 
 
   <build> 
@@ -81,8 +68,7 @@
       <plugin> 
         <groupId>org.springframework.boot</groupId>  
         <artifactId>spring-boot-maven-plugin</artifactId> 
-      </plugin>  
-
+      </plugin>
 
       <plugin>
         <groupId>com.microsoft.azure</groupId>

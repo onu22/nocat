@@ -1,6 +1,7 @@
 
 package com.nocat.service;
 
+import com.nocat.NocatUser;
 import org.springframework.data.repository.CrudRepository;
 
 public interface NocatUserRepository extends CrudRepository<NocatUser, Long> {

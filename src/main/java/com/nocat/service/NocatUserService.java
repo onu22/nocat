@@ -1,5 +1,6 @@
 package com.nocat.service;
 
+import com.nocat.NocatUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,8 @@ public class NocatUserService implements INocatUserService {
     public void updateLocation( NocatUser updatedUser) {
         long id = updatedUser.getId();
         NocatUser user = nocatUserRepository.findById(id);
-        user.setLatLong(updatedUser.getLatLong());
+        user.setLatitude(updatedUser.getLatitude());
+        user.setLongitude(updatedUser.getLongitude());
         nocatUserRepository.save(user);
     }
 

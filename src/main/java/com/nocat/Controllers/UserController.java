@@ -1,7 +1,7 @@
 package com.nocat.Controllers;
 
 import com.nocat.service.NocatUserService;
-import com.nocat.service.NocatUser;
+import com.nocat.NocatUser;
 import com.nocat.quadtree.QuadTree;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -21,18 +21,15 @@ public class UserController {
     @RequestMapping(method=RequestMethod.PUT, path = "/updatelocation")
     public ResponseEntity<NocatUser> updateLocation(@RequestBody NocatUser data) {
         try {
-
             userService.updateLocation(data);
-            String[] latLong = data.getLatLong().split(" ");
-            long lat = Long.parseLong(latLong[0]);
-            long longi = Long.parseLong(latLong[1]);
-            tree.addNeighbour(data.getId(),lat, longi);
+            double latitude = data.getLatitude();
+            double longitude = data.getLongitude();
+            tree.addNeighbour(data.getId(),latitude, longitude);
             return new ResponseEntity<NocatUser>(HttpStatus.OK);
         }
         catch (Exception ex){
             return new ResponseEntity<NocatUser>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @RequestMapping(method=RequestMethod.GET, path = "/{userId}")

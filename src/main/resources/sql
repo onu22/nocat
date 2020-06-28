@@ -1,9 +1,20 @@
-IF NOT EXISTS (SELECT 1 FROM sysobjects WHERE NAME='nocatuser' and XTYPE='U')
-  CREATE TABLE nocatuser (
-    id      INT           IDENTITY  PRIMARY KEY,
-    deviceId    NVARCHAR(255),
-    userName NVARCHAR(255),
-    latLong NVARCHAR(255),
-  );
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[nocatuser](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[deviceId] [nvarchar](255) NULL,
+	[userName] [nvarchar](255) NULL,
+	[latitude] FLOAT NOT NULL
+    [longitude] FLOAT NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[nocatuser] ADD PRIMARY KEY CLUSTERED
+(
+	[id] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+GO
 
-Insert into nocatuser(deviceId,userName,latLong) values('123','pmanonu 2','43.645250 -79.403168')
+
+Insert into nocatuser(deviceId,userName,latLong) values('123','pmanonu 1','43.645250 -79.403168')
